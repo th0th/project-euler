@@ -1,22 +1,20 @@
-function listFibonacciNumbers(upTo) {
-  const fibonnacciArray = [1, 2];
-  let i = 0;
+function solve(limit) {
+  let sum = 2;
+  let i = 1;
+  let j = 2;
+  let next = j;
 
-  while (i < upTo) {
-    const currentLenght = fibonnacciArray.length;
-    const nextValue =
-      fibonnacciArray[currentLenght - 1] + fibonnacciArray[currentLenght - 2];
+  while (i < limit) {
+    next = i + j;
+    i = j;
+    j = next;
 
-    if (i < upTo) {
-      fibonnacciArray.push(nextValue);
+    if (next % 2 === 0) {
+      sum = sum + j;
     }
-
-    i = nextValue + fibonnacciArray[currentLenght - 1];
   }
 
-  return fibonnacciArray
-    .filter((i) => i % 2 === 0)
-    .reduce((acc, curr) => acc + curr, 0);
+  return sum;
 }
 
-console.log(listFibonacciNumbers(4_000_000));
+console.log(solve(4_000_000));
